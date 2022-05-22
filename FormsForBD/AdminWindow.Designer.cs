@@ -1,6 +1,6 @@
 ﻿namespace FormsForBD
 {
-    partial class Form2
+    partial class AdminWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -594,7 +594,6 @@
             this.DeleteRowsGroupBox.Size = new System.Drawing.Size(196, 127);
             this.DeleteRowsGroupBox.TabIndex = 13;
             this.DeleteRowsGroupBox.TabStop = false;
-            this.DeleteRowsGroupBox.Text = "Удаление записей из таблиц";
             // 
             // MusicIdCheckedListBox
             // 
@@ -717,7 +716,7 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Пластинки";
             // 
-            // Form2
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -734,7 +733,7 @@
             this.Controls.Add(this.PeopleGroupBox);
             this.Controls.Add(this.PeopleTable);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form2";
+            this.Name = "MainWindow";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.PeopleTable)).EndInit();
             this.PeopleGroupBox.ResumeLayout(false);

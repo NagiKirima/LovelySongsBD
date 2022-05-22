@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace FormsForBD
 {
-    public partial class Form2 : Form
+    public partial class UserWindow : Form
     {
-        public Form2()
+        public UserWindow()
         {
             InitializeComponent();
+            Text = "Любимые песни";
         }
-
     }
 }
