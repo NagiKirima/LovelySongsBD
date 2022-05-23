@@ -716,7 +716,7 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Пластинки";
             // 
-            // MainWindow
+            // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -733,8 +733,8 @@
             this.Controls.Add(this.PeopleGroupBox);
             this.Controls.Add(this.PeopleTable);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "MainWindow";
-            this.Text = "Form2";
+            this.Name = "AdminWindow";
+            this.Text = "CRUD";
             ((System.ComponentModel.ISupportInitialize)(this.PeopleTable)).EndInit();
             this.PeopleGroupBox.ResumeLayout(false);
             this.PeopleGroupBox.PerformLayout();

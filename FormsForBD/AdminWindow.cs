@@ -15,7 +15,6 @@ namespace FormsForBD
         public AdminWindow()
         {
             InitializeComponent();
-            Text = "Любимые песни";
         }
     }
 }
