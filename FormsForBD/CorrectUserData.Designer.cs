@@ -1,6 +1,6 @@
 ﻿namespace FormsForBD
 {
-    partial class Registration
+    partial class CorrectUserData
     {
         /// <summary>
         /// Required designer variable.
@@ -42,18 +42,16 @@
             this.FemaleRadio = new System.Windows.Forms.RadioButton();
             this.MaleRadio = new System.Windows.Forms.RadioButton();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.LoginTextBox = new System.Windows.Forms.TextBox();
+            this.confirm_password_button = new System.Windows.Forms.Button();
             this.PasswordIcon = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.confirm_password_button);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.AgeTextBox);
             this.groupBox1.Controls.Add(this.label3);
@@ -65,13 +63,11 @@
             this.groupBox1.Controls.Add(this.SurnameTextBox);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.PasswordTextBox);
-            this.groupBox1.Controls.Add(this.LoginTextBox);
             this.groupBox1.Controls.Add(this.PasswordIcon);
-            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(448, 436);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // label4
@@ -170,7 +166,7 @@
             this.groupBox2.Controls.Add(this.FemaleRadio);
             this.groupBox2.Controls.Add(this.MaleRadio);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(316, 39);
+            this.groupBox2.Location = new System.Drawing.Point(316, 28);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(87, 99);
             this.groupBox2.TabIndex = 9;
@@ -202,7 +198,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(79, 104);
+            this.PasswordTextBox.Location = new System.Drawing.Point(96, 28);
             this.PasswordTextBox.MaxLength = 30;
             this.PasswordTextBox.Multiline = true;
             this.PasswordTextBox.Name = "PasswordTextBox";
@@ -210,50 +206,40 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(198, 34);
             this.PasswordTextBox.TabIndex = 8;
             // 
-            // LoginTextBox
+            // confirm_password_button
             // 
-            this.LoginTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LoginTextBox.Location = new System.Drawing.Point(79, 39);
-            this.LoginTextBox.MaxLength = 30;
-            this.LoginTextBox.Multiline = true;
-            this.LoginTextBox.Name = "LoginTextBox";
-            this.LoginTextBox.Size = new System.Drawing.Size(198, 34);
-            this.LoginTextBox.TabIndex = 7;
+            this.confirm_password_button.Location = new System.Drawing.Point(96, 68);
+            this.confirm_password_button.Name = "confirm_password_button";
+            this.confirm_password_button.Size = new System.Drawing.Size(198, 23);
+            this.confirm_password_button.TabIndex = 19;
+            this.confirm_password_button.Text = "Подтвердить пароль";
+            this.confirm_password_button.UseVisualStyleBackColor = true;
+            this.confirm_password_button.Click += new System.EventHandler(this.confirm_password_button_Click);
             // 
             // PasswordIcon
             // 
             this.PasswordIcon.Image = global::FormsForBD.Properties.Resources.pas1;
-            this.PasswordIcon.Location = new System.Drawing.Point(39, 104);
+            this.PasswordIcon.Location = new System.Drawing.Point(39, 28);
             this.PasswordIcon.Name = "PasswordIcon";
             this.PasswordIcon.Size = new System.Drawing.Size(34, 34);
             this.PasswordIcon.TabIndex = 6;
             this.PasswordIcon.TabStop = false;
             this.PasswordIcon.Click += new System.EventHandler(this.PasswordIcon_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::FormsForBD.Properties.Resources.log1;
-            this.pictureBox1.Location = new System.Drawing.Point(39, 39);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // Registration
+            // CorrectUserData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 455);
+            this.ClientSize = new System.Drawing.Size(472, 460);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Registration";
-            this.Text = "Регистрация";
+            this.Name = "CorrectUserData";
+            this.Text = "Ваша личная информация";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,11 +247,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox PasswordIcon;
-        private System.Windows.Forms.TextBox PasswordTextBox;
-        private System.Windows.Forms.TextBox LoginTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox AgeTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button SendFormButton;
         private System.Windows.Forms.TextBox PatronymicTextBox;
         private System.Windows.Forms.TextBox NameTextBox;
@@ -273,10 +259,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton FemaleRadio;
         private System.Windows.Forms.RadioButton MaleRadio;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox AgeTextBox;
+        private System.Windows.Forms.TextBox PasswordTextBox;
+        private System.Windows.Forms.PictureBox PasswordIcon;
+        private System.Windows.Forms.Button confirm_password_button;
     }
 }

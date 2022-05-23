@@ -112,5 +112,12 @@ namespace FormsForBD
             regwindow.ShowDialog();
             this.Show();
         }
+
+        // set visible for password
+        private void PasswordIcon_Click(object sender, EventArgs e)
+        {
+            if (PasswordTextBox.UseSystemPasswordChar) PasswordTextBox.UseSystemPasswordChar = false;
+            else PasswordTextBox.UseSystemPasswordChar = true;
+        }
     }
 }

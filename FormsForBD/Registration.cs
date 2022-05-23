@@ -104,13 +104,13 @@ namespace FormsForBD
                 AddUser(NameTextBox.Text, SurnameTextBox.Text, PatronymicTextBox.Text, age.ToString(), g.ToString());
 
                 MessageBox.Show("Регистрация прошла успешно!");
-                this.Close();
             }
             catch (Exception a) 
             {
                 MessageBox.Show(a.Message);
             }
             CloseConnection();
+            this.Close();
         }
         private void AddUser(string name, string sname, string patr, string age, string gender) 
         {
@@ -136,6 +136,13 @@ namespace FormsForBD
                 $"{age},\'{gender}\',{id})";
             command.CommandText = req3;
             command.ExecuteNonQuery();
+        }
+
+        // set visible for password
+        private void PasswordIcon_Click(object sender, EventArgs e)
+        {
+            if (PasswordTextBox.UseSystemPasswordChar) PasswordTextBox.UseSystemPasswordChar = false;
+            else PasswordTextBox.UseSystemPasswordChar = true;
         }
     }
 }

@@ -220,5 +220,15 @@ namespace FormsForBD
             CloseConnection();
             MessageBox.Show("Плейлист успешно сохранен!");
         }
+
+        private void FixUserDataButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            OpenConnection();
+            var newform = new CorrectUserData(GetUserId(login_label.Text));
+            newform.ShowDialog();
+            CloseConnection();
+            this.Show();
+        }
     }
 }
