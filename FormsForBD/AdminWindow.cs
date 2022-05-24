@@ -20,6 +20,7 @@ namespace FormsForBD
             connect = GetConnection();
             OpenConnection();
             UpdateMusicianGrid();
+            UpdateSongGrid();
             CloseConnection();
         }
         // connection methods
@@ -103,12 +104,13 @@ namespace FormsForBD
                 {
                     var id = (int)reader.GetValue(0);
                     var name = (string)reader.GetValue(1);
-                    MusicianDgw.Rows.Add(id, name, "Применить", "Удалить");
+                    MusicianDgw.Rows.Add(id, name, "Применить");
                 }
             reader.Close();
         }
         private void AddMusicianBtn_Click(object sender, EventArgs e)
         {
+            if (MusicianNameTextBox.Text == "") { MessageBox.Show("Введите данные в строку имени музыканта!"); return; }
             OpenConnection();
             NpgsqlCommand cmd = connect.CreateCommand();
             cmd.CommandText = $"select * from \"Musician\" where musician_name = '{MusicianNameTextBox.Text}'";
@@ -129,37 +131,177 @@ namespace FormsForBD
             }
             CloseConnection();
         }
-
         private void MusicianDgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            OpenConnection();
             var dgw = (DataGridView)sender;
-            if (e.ColumnIndex == 2) //save
+            if (dgw.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "Применить") //save
             {
+                OpenConnection();
                 var newname = dgw.Rows[e.RowIndex].Cells[1].Value.ToString();
                 var id_musician = (int)dgw.Rows[e.RowIndex].Cells[0].Value;
                 NpgsqlCommand cmd = connect.CreateCommand();
-                cmd.CommandText = $"select * from \"Musician\" where musician_name = '{newname}'";
+                cmd.CommandText = $"select * from \"Musician\" where id_musician = {id_musician}";
                 NpgsqlDataReader reader = cmd.ExecuteReader();
-                var ok = reader.HasRows;
-                reader.Close();
-                if (!ok)
+                if (reader.HasRows)
                 {
-                    NpgsqlCommand updatecmd = connect.CreateCommand();
-                    updatecmd.CommandText = $"update \"Musician\" set musician_name = '{newname}' where id_musician = {id_musician}";
-                    updatecmd.ExecuteNonQuery();
-                    MessageBox.Show("Изменения успешно сохранены!");
-                    UpdateMusicianGrid();
+                    string prevname = null;
+                    while (reader.Read()) prevname = (string)reader.GetValue(1);
+                    reader.Close();
+                    if (prevname != newname)
+                    {
+                        NpgsqlCommand updatecmd = connect.CreateCommand();
+                        updatecmd.CommandText = $"update \"Musician\" set musician_name = '{newname}' where id_musician = {id_musician}";
+                        updatecmd.ExecuteNonQuery();
+                        MessageBox.Show("Изменения успешно сохранены!");
+                        UpdateMusicianGrid();
+                    }
+                    else MessageBox.Show("Изменений не было!");
                 }
-                else MessageBox.Show("Исполнитель с таким именем уже существует!");
+                else reader.Close();
+                CloseConnection();
             }
-            if (e.ColumnIndex == 3) //delete
+        }
+
+
+        // song crud methods
+        private void UpdateSongGrid() 
+        {
+            SongDgw.Rows.Clear();
+            NpgsqlCommand cmd = connect.CreateCommand();
+            cmd.CommandText = $"select * from \"Song\" order by song_name";
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+                while (reader.Read())
+                {
+                    var id = (int)reader.GetValue(0);
+                    var name = (string)reader.GetValue(1);
+                    var len = (int)reader.GetValue(2);
+                    SongDgw.Rows.Add(id, name, len, "Применить");
+                }
+            reader.Close();
+        }
+        private void AddSongButton_Click(object sender, EventArgs e)
+        {
+            if (SongNameTextBox.Text == "") { MessageBox.Show("Введите данные в строку имени трека!"); return; }
+            OpenConnection();
+            NpgsqlCommand cmd = connect.CreateCommand();
+            cmd.CommandText = $"select * from \"Song\" where song_name = '{SongNameTextBox.Text}'";
+            NpgsqlDataReader r = cmd.ExecuteReader();
+            var ok = r.HasRows;
+            r.Close();
+            if (ok) MessageBox.Show("Трек с таким названием уже существует!");
+            else 
             {
-                NpgsqlCommand cmd = connect.CreateCommand();
-                cmd.CommandText = $"delete from \"Musician\" where id_musician = {(int)dgw.Rows[e.RowIndex].Cells[0].Value}";
-                cmd.ExecuteNonQuery();
-                UpdateMusicianGrid();
+                NpgsqlCommand addcmd = connect.CreateCommand();
+                addcmd.CommandText = $"insert into \"Song\" (song_name) values ('{SongNameTextBox.Text}')";
+                addcmd.ExecuteNonQuery();
+                MessageBox.Show("Трек успешно добавлен!");
+                UpdateSongGrid();
             }
+            CloseConnection();
+        }
+        private void SongDgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OpenConnection();
+            var dgw = (DataGridView)sender;
+            if (dgw.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "Применить") //save
+            {
+                OpenConnection();
+                var newname = dgw.Rows[e.RowIndex].Cells[1].Value.ToString();
+                var id_song = (int)dgw.Rows[e.RowIndex].Cells[0].Value;
+                var newlen = int.Parse(dgw.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+                NpgsqlCommand cmd = connect.CreateCommand();
+                cmd.CommandText = $"select * from \"Song\" where id_song = {id_song}";
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    string prevname = null;
+                    int prevlen = -1;
+                    while (reader.Read())
+                    {
+                        prevname = (string)reader.GetValue(1);
+                        prevlen = (int)reader.GetValue(2);
+                    }
+                    reader.Close();
+                    if (prevname != newname && prevlen == newlen) // new name
+                    {
+                        NpgsqlCommand updatecmd = connect.CreateCommand();
+                        updatecmd.CommandText = $"update \"Song\" set song_name = '{newname}' where id_song = {id_song}";
+                        updatecmd.ExecuteNonQuery();
+                        MessageBox.Show("Изменения успешно сохранены!");
+                        UpdateSongGrid();
+                    }
+                    else if (prevname == newname && prevlen != newlen) // new len
+                    {
+                        NpgsqlCommand updatecmd = connect.CreateCommand();
+                        updatecmd.CommandText = $"update \"Song\" set song_len = '{newlen}' where id_song = {id_song}";
+                        updatecmd.ExecuteNonQuery();
+                        MessageBox.Show("Изменения успешно сохранены!");
+                        UpdateSongGrid();
+                    }
+                    else if (prevname != newname && prevlen != newlen) // new len and name
+                    {
+                        NpgsqlCommand updatecmd = connect.CreateCommand();
+                        updatecmd.CommandText = $"update \"Song\" set song_name = '{newname}', song_len = {newlen} where id_song = {id_song}";
+                        updatecmd.ExecuteNonQuery();
+                        MessageBox.Show("Изменения успешно сохранены!");
+                        UpdateSongGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Изменений не было!");
+                    }
+                }
+                else reader.Close();
+                CloseConnection();
+            }
+        }
+
+        // songmusician crud methods
+        // choice song
+        private void ChoiceSongButton_Click(object sender, EventArgs e)
+        {
+            OpenConnection();
+            NpgsqlCommand cmd = connect.CreateCommand();
+            cmd.CommandText = $"select * from \"Song\" order by id_song";
+            NpgsqlDataReader r = cmd.ExecuteReader();
+            if (r.HasRows)
+            {
+                var result = new List<KeyValuePair<int, string>>();
+                while (r.Read()) result.Add(new KeyValuePair<int, string>((int)r.GetValue(0), (string)r.GetValue(1)));
+                r.Close();
+                this.Hide();
+                AddSongMusicianForm form = new AddSongMusicianForm(this, song_label);
+                form.InitializeDgw(result);
+                form.ShowDialog();
+                this.Show();
+            }
+            else MessageBox.Show("Треки отсутствуют!");
+            r.Close();
+            CloseConnection();
+        }
+        //choice musician
+        private void ChoiceMusicianButton_Click(object sender, EventArgs e)
+        {
+
+            OpenConnection();
+            NpgsqlCommand cmd = connect.CreateCommand();
+            cmd.CommandText = $"select * from \"Musician\" order by id_musician";
+            NpgsqlDataReader r = cmd.ExecuteReader();
+            if (r.HasRows)
+            {
+                var result = new List<KeyValuePair<int, string>>();
+                while (r.Read()) result.Add(new KeyValuePair<int, string>((int)r.GetValue(0), (string)r.GetValue(1)));
+                r.Close();
+                this.Hide();
+                AddSongMusicianForm form = new AddSongMusicianForm(this, musician_label);
+                form.InitializeDgw(result);
+                form.ShowDialog();
+                this.Show();
+            }
+            else MessageBox.Show("Исполнители отсутствуют!");
+            r.Close();
             CloseConnection();
         }
     }

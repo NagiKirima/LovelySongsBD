@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.confirm_password_button = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.AgeTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.FemaleRadio = new System.Windows.Forms.RadioButton();
             this.MaleRadio = new System.Windows.Forms.RadioButton();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.confirm_password_button = new System.Windows.Forms.Button();
             this.PasswordIcon = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,15 +70,25 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // confirm_password_button
+            // 
+            this.confirm_password_button.Location = new System.Drawing.Point(96, 68);
+            this.confirm_password_button.Name = "confirm_password_button";
+            this.confirm_password_button.Size = new System.Drawing.Size(198, 23);
+            this.confirm_password_button.TabIndex = 19;
+            this.confirm_password_button.Text = "Подтвердить пароль";
+            this.confirm_password_button.UseVisualStyleBackColor = true;
+            this.confirm_password_button.Click += new System.EventHandler(this.confirm_password_button_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(39, 316);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 24);
+            this.label4.Size = new System.Drawing.Size(129, 24);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Ваша возраст:";
+            this.label4.Text = "Ваш возраст:";
             // 
             // AgeTextBox
             // 
@@ -96,9 +106,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(39, 265);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 24);
+            this.label3.Size = new System.Drawing.Size(151, 24);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Ваша отчество:";
+            this.label3.Text = "Ваше отчество:";
             // 
             // label2
             // 
@@ -106,9 +116,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(39, 214);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 24);
+            this.label2.Size = new System.Drawing.Size(101, 24);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Ваша имя:";
+            this.label2.Text = "Ваше имя:";
             // 
             // label1
             // 
@@ -205,16 +215,6 @@
             this.PasswordTextBox.PasswordChar = '•';
             this.PasswordTextBox.Size = new System.Drawing.Size(198, 34);
             this.PasswordTextBox.TabIndex = 8;
-            // 
-            // confirm_password_button
-            // 
-            this.confirm_password_button.Location = new System.Drawing.Point(96, 68);
-            this.confirm_password_button.Name = "confirm_password_button";
-            this.confirm_password_button.Size = new System.Drawing.Size(198, 23);
-            this.confirm_password_button.TabIndex = 19;
-            this.confirm_password_button.Text = "Подтвердить пароль";
-            this.confirm_password_button.UseVisualStyleBackColor = true;
-            this.confirm_password_button.Click += new System.EventHandler(this.confirm_password_button_Click);
             // 
             // PasswordIcon
             // 

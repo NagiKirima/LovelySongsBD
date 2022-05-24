@@ -36,6 +36,10 @@
             // 
             // FilterDgw
             // 
+            this.FilterDgw.AllowUserToAddRows = false;
+            this.FilterDgw.AllowUserToDeleteRows = false;
+            this.FilterDgw.AllowUserToResizeColumns = false;
+            this.FilterDgw.AllowUserToResizeRows = false;
             this.FilterDgw.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.FilterDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FilterDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -49,12 +53,14 @@
             // 
             // name
             // 
-            this.name.HeaderText = "Имя/название жанра";
+            this.name.FillWeight = 128.934F;
+            this.name.HeaderText = "Исполнитель/название жанра";
             this.name.Name = "name";
             this.name.ReadOnly = true;
             // 
             // btn
             // 
+            this.btn.FillWeight = 71.06599F;
             this.btn.HeaderText = "";
             this.btn.Name = "btn";
             this.btn.ReadOnly = true;

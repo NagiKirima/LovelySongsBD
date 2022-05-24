@@ -102,6 +102,10 @@
             // 
             // AllSongDgw
             // 
+            this.AllSongDgw.AllowUserToAddRows = false;
+            this.AllSongDgw.AllowUserToDeleteRows = false;
+            this.AllSongDgw.AllowUserToResizeColumns = false;
+            this.AllSongDgw.AllowUserToResizeRows = false;
             this.AllSongDgw.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.AllSongDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AllSongDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -172,6 +176,10 @@
             // 
             // SendDgw
             // 
+            this.SendDgw.AllowUserToAddRows = false;
+            this.SendDgw.AllowUserToDeleteRows = false;
+            this.SendDgw.AllowUserToResizeColumns = false;
+            this.SendDgw.AllowUserToResizeRows = false;
             this.SendDgw.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.SendDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SendDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

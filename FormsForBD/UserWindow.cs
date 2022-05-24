@@ -15,7 +15,6 @@ namespace FormsForBD
     {
         private NpgsqlConnection connect;
         private Filter filterform;
-        private DataGridView prev;
         public UserWindow(string login)
         {
             InitializeComponent();
@@ -25,10 +24,13 @@ namespace FormsForBD
             login_label.Text = login;
             UpdatePlaylistData();
         }
+
+
         private void OutputErrorMessageBox(string error)
         {
             MessageBox.Show(error);
         }
+
 
         // connection methods
         private static NpgsqlConnection GetConnection()
@@ -53,6 +55,7 @@ namespace FormsForBD
                 connect.Close();
         }
 
+
         // filter any information
         private void FilterButton_Click(object sender, EventArgs e)
         {
@@ -69,6 +72,7 @@ namespace FormsForBD
 
             // open dialog form
             this.Hide();
+            filterform = new Filter(this);
             filterform.InitializeDgw(list);
             filterform.ShowDialog();
 
@@ -87,7 +91,6 @@ namespace FormsForBD
                     $"order by song_name";
                 FillAllSongDgw(req);
             }
-
             this.Show();
             CloseConnection();
         }
@@ -189,6 +192,7 @@ namespace FormsForBD
             dgw.Rows.RemoveAt(e.RowIndex);
         }
 
+
         // save playlist
         private void AddSongInPlaylist(int id_song, int id_user, int mark) 
         {
@@ -221,6 +225,8 @@ namespace FormsForBD
             MessageBox.Show("Плейлист успешно сохранен!");
         }
 
+
+        // correct user data form
         private void FixUserDataButton_Click(object sender, EventArgs e)
         {
             this.Hide();

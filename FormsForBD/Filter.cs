@@ -24,17 +24,12 @@ namespace FormsForBD
             foreach (var i in list)
                 FilterDgw.Rows.Add(i, "Выбрать");
         }
-        public void ResetDgw() 
-        {
-            FilterDgw.Rows.Clear();
-        }
 
         private void FilterDgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var dgw = (DataGridView)sender;
             var list_cells = dgw.Rows[e.RowIndex].Cells;
             window.FilterTextBox.Text = list_cells[0].Value.ToString();
-            this.ResetDgw();
             this.Close();
         }
     }

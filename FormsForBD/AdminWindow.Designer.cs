@@ -34,20 +34,34 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.MusicianDgw = new System.Windows.Forms.DataGridView();
-            this.MusicianNameTextBox = new System.Windows.Forms.TextBox();
             this.AddMusicianBtn = new System.Windows.Forms.Button();
+            this.MusicianNameTextBox = new System.Windows.Forms.TextBox();
+            this.MusicianDgw = new System.Windows.Forms.DataGridView();
             this.musician_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.musician_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.save_btn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.delete_btn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.AddSongButton = new System.Windows.Forms.Button();
+            this.SongNameTextBox = new System.Windows.Forms.TextBox();
+            this.SongDgw = new System.Windows.Forms.DataGridView();
+            this.song_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.song_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.song_len = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.savebtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.AddSongMusicianButton = new System.Windows.Forms.Button();
+            this.ChoiceMusicianButton = new System.Windows.Forms.Button();
+            this.ChoiceSongButton = new System.Windows.Forms.Button();
+            this.musician_label = new System.Windows.Forms.Label();
+            this.song_label = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MusicianDgw)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SongDgw)).BeginInit();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,19 +128,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Исполнители";
             // 
-            // MusicianDgw
+            // AddMusicianBtn
             // 
-            this.MusicianDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MusicianDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.musician_id,
-            this.musician_name,
-            this.save_btn,
-            this.delete_btn});
-            this.MusicianDgw.Location = new System.Drawing.Point(8, 86);
-            this.MusicianDgw.Name = "MusicianDgw";
-            this.MusicianDgw.Size = new System.Drawing.Size(458, 215);
-            this.MusicianDgw.TabIndex = 0;
-            this.MusicianDgw.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MusicianDgw_CellContentClick);
+            this.AddMusicianBtn.Location = new System.Drawing.Point(260, 37);
+            this.AddMusicianBtn.Name = "AddMusicianBtn";
+            this.AddMusicianBtn.Size = new System.Drawing.Size(206, 33);
+            this.AddMusicianBtn.TabIndex = 6;
+            this.AddMusicianBtn.Text = "Добавить";
+            this.AddMusicianBtn.UseVisualStyleBackColor = true;
+            this.AddMusicianBtn.Click += new System.EventHandler(this.AddMusicianBtn_Click);
             // 
             // MusicianNameTextBox
             // 
@@ -138,15 +148,22 @@
             this.MusicianNameTextBox.Size = new System.Drawing.Size(246, 33);
             this.MusicianNameTextBox.TabIndex = 6;
             // 
-            // AddMusicianBtn
+            // MusicianDgw
             // 
-            this.AddMusicianBtn.Location = new System.Drawing.Point(260, 37);
-            this.AddMusicianBtn.Name = "AddMusicianBtn";
-            this.AddMusicianBtn.Size = new System.Drawing.Size(206, 33);
-            this.AddMusicianBtn.TabIndex = 6;
-            this.AddMusicianBtn.Text = "Добавить";
-            this.AddMusicianBtn.UseVisualStyleBackColor = true;
-            this.AddMusicianBtn.Click += new System.EventHandler(this.AddMusicianBtn_Click);
+            this.MusicianDgw.AllowUserToAddRows = false;
+            this.MusicianDgw.AllowUserToDeleteRows = false;
+            this.MusicianDgw.AllowUserToResizeColumns = false;
+            this.MusicianDgw.AllowUserToResizeRows = false;
+            this.MusicianDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MusicianDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.musician_id,
+            this.musician_name,
+            this.save_btn});
+            this.MusicianDgw.Location = new System.Drawing.Point(8, 86);
+            this.MusicianDgw.Name = "MusicianDgw";
+            this.MusicianDgw.Size = new System.Drawing.Size(458, 215);
+            this.MusicianDgw.TabIndex = 0;
+            this.MusicianDgw.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MusicianDgw_CellContentClick);
             // 
             // musician_id
             // 
@@ -168,38 +185,166 @@
             this.save_btn.ReadOnly = true;
             this.save_btn.Width = 70;
             // 
-            // delete_btn
-            // 
-            this.delete_btn.HeaderText = "";
-            this.delete_btn.Name = "delete_btn";
-            this.delete_btn.ReadOnly = true;
-            this.delete_btn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.delete_btn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.delete_btn.Width = 70;
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dataGridView1);
-            this.groupBox3.Location = new System.Drawing.Point(496, 12);
+            this.groupBox3.Controls.Add(this.AddSongButton);
+            this.groupBox3.Controls.Add(this.SongNameTextBox);
+            this.groupBox3.Controls.Add(this.SongDgw);
+            this.groupBox3.Location = new System.Drawing.Point(12, 434);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(516, 299);
+            this.groupBox3.Size = new System.Drawing.Size(478, 292);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Песни";
             // 
+            // AddSongButton
+            // 
+            this.AddSongButton.Location = new System.Drawing.Point(260, 21);
+            this.AddSongButton.Name = "AddSongButton";
+            this.AddSongButton.Size = new System.Drawing.Size(206, 33);
+            this.AddSongButton.TabIndex = 7;
+            this.AddSongButton.Text = "Добавить трек";
+            this.AddSongButton.UseVisualStyleBackColor = true;
+            this.AddSongButton.Click += new System.EventHandler(this.AddSongButton_Click);
+            // 
+            // SongNameTextBox
+            // 
+            this.SongNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SongNameTextBox.Location = new System.Drawing.Point(8, 21);
+            this.SongNameTextBox.MaxLength = 60;
+            this.SongNameTextBox.Multiline = true;
+            this.SongNameTextBox.Name = "SongNameTextBox";
+            this.SongNameTextBox.Size = new System.Drawing.Size(246, 33);
+            this.SongNameTextBox.TabIndex = 7;
+            // 
+            // SongDgw
+            // 
+            this.SongDgw.AllowUserToAddRows = false;
+            this.SongDgw.AllowUserToDeleteRows = false;
+            this.SongDgw.AllowUserToResizeColumns = false;
+            this.SongDgw.AllowUserToResizeRows = false;
+            this.SongDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SongDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.song_id,
+            this.song_name,
+            this.song_len,
+            this.savebtn});
+            this.SongDgw.Location = new System.Drawing.Point(8, 60);
+            this.SongDgw.Name = "SongDgw";
+            this.SongDgw.Size = new System.Drawing.Size(458, 215);
+            this.SongDgw.TabIndex = 0;
+            this.SongDgw.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SongDgw_CellContentClick);
+            // 
+            // song_id
+            // 
+            this.song_id.HeaderText = "ID";
+            this.song_id.Name = "song_id";
+            this.song_id.ReadOnly = true;
+            this.song_id.Width = 30;
+            // 
+            // song_name
+            // 
+            this.song_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.song_name.HeaderText = "Название";
+            this.song_name.Name = "song_name";
+            // 
+            // song_len
+            // 
+            this.song_len.HeaderText = "Длина";
+            this.song_len.Name = "song_len";
+            this.song_len.Width = 60;
+            // 
+            // savebtn
+            // 
+            this.savebtn.HeaderText = "";
+            this.savebtn.Name = "savebtn";
+            this.savebtn.ReadOnly = true;
+            this.savebtn.Width = 70;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.AddSongMusicianButton);
+            this.groupBox4.Controls.Add(this.ChoiceMusicianButton);
+            this.groupBox4.Controls.Add(this.ChoiceSongButton);
+            this.groupBox4.Controls.Add(this.musician_label);
+            this.groupBox4.Controls.Add(this.song_label);
+            this.groupBox4.Controls.Add(this.dataGridView1);
+            this.groupBox4.Location = new System.Drawing.Point(510, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(554, 416);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Связать исполнителя с треком";
+            // 
+            // AddSongMusicianButton
+            // 
+            this.AddSongMusicianButton.Location = new System.Drawing.Point(29, 108);
+            this.AddSongMusicianButton.Name = "AddSongMusicianButton";
+            this.AddSongMusicianButton.Size = new System.Drawing.Size(458, 35);
+            this.AddSongMusicianButton.TabIndex = 13;
+            this.AddSongMusicianButton.Text = "Добавить связь";
+            this.AddSongMusicianButton.UseVisualStyleBackColor = true;
+            // 
+            // ChoiceMusicianButton
+            // 
+            this.ChoiceMusicianButton.Location = new System.Drawing.Point(325, 67);
+            this.ChoiceMusicianButton.Name = "ChoiceMusicianButton";
+            this.ChoiceMusicianButton.Size = new System.Drawing.Size(162, 35);
+            this.ChoiceMusicianButton.TabIndex = 12;
+            this.ChoiceMusicianButton.Text = "Выбрать исполнителя";
+            this.ChoiceMusicianButton.UseVisualStyleBackColor = true;
+            this.ChoiceMusicianButton.Click += new System.EventHandler(this.ChoiceMusicianButton_Click);
+            // 
+            // ChoiceSongButton
+            // 
+            this.ChoiceSongButton.Location = new System.Drawing.Point(325, 21);
+            this.ChoiceSongButton.Name = "ChoiceSongButton";
+            this.ChoiceSongButton.Size = new System.Drawing.Size(162, 35);
+            this.ChoiceSongButton.TabIndex = 11;
+            this.ChoiceSongButton.Text = "Выбрать трек";
+            this.ChoiceSongButton.UseVisualStyleBackColor = true;
+            this.ChoiceSongButton.Click += new System.EventHandler(this.ChoiceSongButton_Click);
+            // 
+            // musician_label
+            // 
+            this.musician_label.BackColor = System.Drawing.SystemColors.Window;
+            this.musician_label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.musician_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.musician_label.Location = new System.Drawing.Point(29, 67);
+            this.musician_label.Name = "musician_label";
+            this.musician_label.Size = new System.Drawing.Size(290, 35);
+            this.musician_label.TabIndex = 10;
+            this.musician_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // song_label
+            // 
+            this.song_label.BackColor = System.Drawing.SystemColors.Window;
+            this.song_label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.song_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.song_label.Location = new System.Drawing.Point(29, 21);
+            this.song_label.Name = "song_label";
+            this.song_label.Size = new System.Drawing.Size(290, 35);
+            this.song_label.TabIndex = 9;
+            this.song_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 82);
+            this.dataGridView1.Location = new System.Drawing.Point(29, 157);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(484, 199);
+            this.dataGridView1.Size = new System.Drawing.Size(458, 250);
             this.dataGridView1.TabIndex = 0;
             // 
             // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 629);
+            this.ClientSize = new System.Drawing.Size(1138, 786);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -213,6 +358,9 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MusicianDgw)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SongDgw)).EndInit();
+            this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -229,11 +377,23 @@
         private System.Windows.Forms.Button AddMusicianBtn;
         private System.Windows.Forms.TextBox MusicianNameTextBox;
         private System.Windows.Forms.DataGridView MusicianDgw;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView SongDgw;
+        private System.Windows.Forms.Button AddSongButton;
+        private System.Windows.Forms.TextBox SongNameTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn musician_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn musician_name;
         private System.Windows.Forms.DataGridViewButtonColumn save_btn;
-        private System.Windows.Forms.DataGridViewButtonColumn delete_btn;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn song_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn song_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn song_len;
+        private System.Windows.Forms.DataGridViewButtonColumn savebtn;
+        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label musician_label;
+        private System.Windows.Forms.Label song_label;
+        private System.Windows.Forms.Button AddSongMusicianButton;
+        private System.Windows.Forms.Button ChoiceMusicianButton;
+        private System.Windows.Forms.Button ChoiceSongButton;
     }
 }
