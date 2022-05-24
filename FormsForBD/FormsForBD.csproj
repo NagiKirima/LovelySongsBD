@@ -97,6 +97,12 @@
     <Compile Include="AddSongMusicianForm.Designer.cs">
       <DependentUpon>AddSongMusicianForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminResultsForm.Designer.cs">
+      <DependentUpon>AdminResultsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Authorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="AddSongMusicianForm.resx">
       <DependentUpon>AddSongMusicianForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminResultsForm.resx">
+      <DependentUpon>AdminResultsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>

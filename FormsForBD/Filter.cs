@@ -12,11 +12,11 @@ namespace FormsForBD
 {
     public partial class Filter : Form
     {
-        private UserWindow window;
-        public Filter(UserWindow wind)
+        private TextBox filtertext;
+        public Filter(TextBox filter)
         {
             InitializeComponent();
-            window = wind;
+            filtertext = filter;
         }
 
         public void InitializeDgw(List<string> list) 
@@ -29,7 +29,7 @@ namespace FormsForBD
         {
             var dgw = (DataGridView)sender;
             var list_cells = dgw.Rows[e.RowIndex].Cells;
-            window.FilterTextBox.Text = list_cells[0].Value.ToString();
+            filtertext.Text = list_cells[0].Value.ToString();
             this.Close();
         }
     }

@@ -18,7 +18,7 @@ namespace FormsForBD
         public UserWindow(string login)
         {
             InitializeComponent();
-            filterform = new Filter(this);
+            filterform = new Filter(FilterTextBox);
             filterform.Hide();
             connect = GetConnection();
             login_label.Text = login;
@@ -72,7 +72,7 @@ namespace FormsForBD
 
             // open dialog form
             this.Hide();
-            filterform = new Filter(this);
+            filterform = new Filter(FilterTextBox);
             filterform.InitializeDgw(list);
             filterform.ShowDialog();
 
@@ -173,13 +173,13 @@ namespace FormsForBD
         {
             var dgw = (DataGridView)sender;
             var cells = dgw.Rows[e.RowIndex].Cells;
-            if (SendDgw.Rows.Count > 5) MessageBox.Show("Нельзя выбрать более 5 песен!");
+            if (SendDgw.Rows.Count == 5) MessageBox.Show("Нельзя выбрать более 5 песен!");
             else 
             {
                 OpenConnection();
                 if (isConsist((int)cells[0].Value))
                     MessageBox.Show("Такой трек уже есть в вашем плейлисте!");
-                else SendDgw.Rows.Add(cells[0].Value, GetUserId(login_label.Text), cells[1].Value, 5 - SendDgw.Rows.Count + 1, "Удалить");
+                else SendDgw.Rows.Add(cells[0].Value, GetUserId(login_label.Text), cells[1].Value, 5 - SendDgw.Rows.Count, "Удалить");
                 CloseConnection();
             }
         }
