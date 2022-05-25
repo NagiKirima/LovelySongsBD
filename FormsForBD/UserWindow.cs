@@ -172,24 +172,30 @@ namespace FormsForBD
         private void AllSongDgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var dgw = (DataGridView)sender;
-            var cells = dgw.Rows[e.RowIndex].Cells;
-            if (SendDgw.Rows.Count == 5) MessageBox.Show("Нельзя выбрать более 5 песен!");
-            else 
+            if (dgw.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "Выбрать")
             {
                 OpenConnection();
-                if (isConsist((int)cells[0].Value))
-                    MessageBox.Show("Такой трек уже есть в вашем плейлисте!");
-                else SendDgw.Rows.Add(cells[0].Value, GetUserId(login_label.Text), cells[1].Value, 5 - SendDgw.Rows.Count, "Удалить");
+                var cells = dgw.Rows[e.RowIndex].Cells;
+                if (SendDgw.Rows.Count == 5) MessageBox.Show("Нельзя выбрать более 5 песен!");
+                else
+                {
+                    if (isConsist((int)cells[0].Value))
+                        MessageBox.Show("Такой трек уже есть в вашем плейлисте!");
+                    else SendDgw.Rows.Add(cells[0].Value, GetUserId(login_label.Text), cells[1].Value, 5 - SendDgw.Rows.Count, "Удалить");
+                }
                 CloseConnection();
             }
         }
         private void SendDgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var dgw = (DataGridView)sender;
-            for (var i = e.RowIndex; i < dgw.Rows.Count; i++)
-                if(dgw.Rows[i].Cells[3].Value != null)
-                    dgw.Rows[i].Cells[3].Value = (int)dgw.Rows[i].Cells[3].Value + 1;
-            dgw.Rows.RemoveAt(e.RowIndex);
+            if (dgw.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "Удалить")
+            {
+                for (var i = e.RowIndex; i < dgw.Rows.Count; i++)
+                    if (dgw.Rows[i].Cells[3].Value != null)
+                        dgw.Rows[i].Cells[3].Value = (int)dgw.Rows[i].Cells[3].Value + 1;
+                dgw.Rows.RemoveAt(e.RowIndex);
+            }
         }
 
 

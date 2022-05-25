@@ -108,6 +108,8 @@ namespace FormsForBD
             catch (Exception a) 
             {
                 MessageBox.Show(a.Message);
+                CloseConnection();
+                return;
             }
             CloseConnection();
             this.Close();
