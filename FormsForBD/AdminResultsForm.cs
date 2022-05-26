@@ -28,7 +28,7 @@ namespace FormsForBD
         // connection methods
         private static NpgsqlConnection GetConnection()
         {
-            return new NpgsqlConnection(@"Server=localhost;Username=postgres;Database=Cursach;Port=5432;Password=ranopi125;");
+            return new NpgsqlConnection(@"Server=localhost;Username=admin_pg;Database=Cursach;Port=5432;Password=admin;");
         }
         private void OpenConnection()
         {
