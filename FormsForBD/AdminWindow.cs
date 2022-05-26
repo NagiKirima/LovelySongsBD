@@ -214,7 +214,12 @@ namespace FormsForBD
                 OpenConnection();
                 var newname = dgw.Rows[e.RowIndex].Cells[1].Value.ToString();
                 var id_song = (int)dgw.Rows[e.RowIndex].Cells[0].Value;
-                var newlen = int.Parse(dgw.Rows[e.RowIndex].Cells[2].Value.ToString());
+                int newlen = -1;
+                try
+                {
+                    newlen = int.Parse(dgw.Rows[e.RowIndex].Cells[2].Value.ToString());
+                }
+                catch { MessageBox.Show("Введите цифры в поле"); CloseConnection(); return; }
 
                 NpgsqlCommand cmd = connect.CreateCommand();
                 cmd.CommandText = $"select * from \"Song\" where id_song = {id_song}";
