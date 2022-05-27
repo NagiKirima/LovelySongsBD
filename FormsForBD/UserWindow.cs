@@ -64,9 +64,9 @@ namespace FormsForBD
 
             OpenConnection();
             // get list with filters
-            var req1 = "select musician_name from \"Musician\"";
-            var req2 = "select distinct style_name from \"Style\"";
-            List<string> list;
+            var req1 = "select id_musician, musician_name from \"Musician\"";
+            var req2 = "select id_style, style_name from \"StyleTitle\"";
+            List<KeyValuePair<int, string>> list;
             if (CheckFilter()) list = GetListWithFilter(req1);
             else list = GetListWithFilter(req2);
 
@@ -86,8 +86,8 @@ namespace FormsForBD
             }
             else
             {
-                var req = $"select \"Song\".id_song, song_name, style_name from \"Song\",\"Style\"" +
-                    $"where \"Song\".id_song = \"Style\".id_song and \"Style\".style_name = '{FilterTextBox.Text}' " +
+                var req = $"select \"Song\".id_song, song_name, style_name from \"Song\",\"Style\",\"StyleTitle\" " +
+                    $"where \"Song\".id_song = \"Style\".id_song and \"Style\".id_style = \"StyleTitle\".id_style and style_name = '{FilterTextBox.Text}' " +
                     $"order by song_name";
                 FillAllSongDgw(req);
             }
@@ -100,14 +100,14 @@ namespace FormsForBD
             if (MusicianRadioButton.Checked) return true;
             else return false;
         }
-        private List<string> GetListWithFilter(string req) 
+        private List<KeyValuePair<int, string>> GetListWithFilter(string req) 
         {
-            var result = new List<string>();
+            var result = new List<KeyValuePair<int,string>>();
             NpgsqlCommand cmd = connect.CreateCommand(); cmd.CommandText = req;
             NpgsqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
                 while (reader.Read())
-                    result.Add(reader.GetValue(0).ToString());
+                    result.Add(new KeyValuePair<int, string>(int.Parse(reader.GetValue(0).ToString()),reader.GetValue(1).ToString()));
             reader.Close();
             return result;
         }

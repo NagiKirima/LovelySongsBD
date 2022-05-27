@@ -149,10 +149,10 @@ namespace FormsForBD
             NpgsqlCommand cmd = connect.CreateCommand();
             cmd.CommandText = $"select distinct playlist_date from \"Playlist\"";
             NpgsqlDataReader r = cmd.ExecuteReader();
-            List<string> dates = new List<string>(); // get dates
+            var dates = new List<KeyValuePair<int, string>>(); // get dates
             if (r.HasRows)
                 while (r.Read())
-                    dates.Add(r.GetValue(0).ToString()); ;
+                    dates.Add(new KeyValuePair<int,string>(0, r.GetValue(0).ToString())); ;
             r.Close();
 
             this.Hide();

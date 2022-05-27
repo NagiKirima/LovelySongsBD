@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.FilterDgw = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.FilterDgw)).BeginInit();
@@ -43,6 +44,7 @@
             this.FilterDgw.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.FilterDgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FilterDgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
             this.name,
             this.btn});
             this.FilterDgw.Location = new System.Drawing.Point(25, 12);
@@ -50,6 +52,13 @@
             this.FilterDgw.Size = new System.Drawing.Size(636, 464);
             this.FilterDgw.TabIndex = 0;
             this.FilterDgw.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.FilterDgw_CellContentClick);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // name
             // 
@@ -81,6 +90,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView FilterDgw;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewButtonColumn btn;
     }

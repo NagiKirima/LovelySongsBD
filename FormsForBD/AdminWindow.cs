@@ -413,8 +413,8 @@ namespace FormsForBD
         {
             SongStyleDgw.Rows.Clear();
             NpgsqlCommand cmd = connect.CreateCommand();
-            cmd.CommandText = "select st.id, s.id_song, song_name, style_name from \"Song\" as s, \"Style\" as st " +
-                "where s.id_song = st.id_song order by song_name, style_name";
+            cmd.CommandText = "select st.id, s.id_song, song_name, style_name from \"Song\" as s, \"Style\" as st, \"StyleTitle\" as stt " +
+                "where s.id_song = st.id_song and stt.id_style = st.id_style order by song_name, style_name";
             NpgsqlDataReader r = cmd.ExecuteReader();
             if (r.HasRows)
                 while (r.Read()) 
@@ -464,9 +464,10 @@ namespace FormsForBD
                 OpenConnection();
                 try
                 {
+                    var style_id = GetStyleTitleId(StyleTextBox.Text);
                     NpgsqlCommand cmd = connect.CreateCommand();
-                    cmd.CommandText = "insert into \"Style\" (id_song, style_name) " +
-                        $"values ({int.Parse(song_label2.Text.Split()[0])}, '{StyleTextBox.Text.ToLower()}')";
+                    cmd.CommandText = "insert into \"Style\" (id_song, id_style) " +
+                        $"values ({int.Parse(song_label2.Text.Split()[0])}, {style_id})";
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Связь добавлена!");
                     UpdateSongStyleDgw();
@@ -500,6 +501,73 @@ namespace FormsForBD
             var form = new AdminResultsForm(connect);
             form.ShowDialog();
             this.Show();
+        }
+
+        private void ChoiceStyleButton_Click(object sender, EventArgs e)
+        {
+            OpenConnection();
+            var req = "select id_style, style_name from \"StyleTitle\"";
+            var list = new List<KeyValuePair<int, string>>();
+            NpgsqlCommand cmd = connect.CreateCommand(); cmd.CommandText = req;
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+                while (reader.Read())
+                    list.Add(new KeyValuePair<int, string>(int.Parse(reader.GetValue(0).ToString()), reader.GetValue(1).ToString()));
+            reader.Close();
+            CloseConnection();
+            // open dialog form
+            this.Hide();
+            var filterform = new Filter(StyleTextBox);
+            filterform.InitializeDgw(list);
+            filterform.ShowDialog();
+            this.Show();
+        }
+
+        private int GetStyleTitleId(string title) 
+        {
+            var req = $"select id_style from \"StyleTitle\" where style_name = '{title}'";
+            NpgsqlCommand cmd = connect.CreateCommand(); cmd.CommandText = req;
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            int id = int.MinValue;
+            if (reader.HasRows)
+                while (reader.Read())
+                    id = int.Parse(reader.GetValue(0).ToString());
+            reader.Close();
+            return id;
+        }
+        private void DeleteStyleButton_Click(object sender, EventArgs e)
+        {
+            if (StyleTextBox.Text == "") MessageBox.Show("Выберите жанр!");
+            else 
+            {
+                OpenConnection();
+                var id = GetStyleTitleId(StyleTextBox.Text);
+                NpgsqlCommand cmd = connect.CreateCommand();
+                cmd.CommandText = $"delete from \"StyleTitle\" where id_style = {id}";
+                cmd.ExecuteNonQuery();
+                UpdateSongStyleDgw();
+                CloseConnection();
+                MessageBox.Show($"Жанр {StyleTextBox.Text} успешно удален!");
+                StyleTextBox.Text = "";
+            }
+        }
+
+        private void AddStyleTitleButton_Click(object sender, EventArgs e)
+        {
+            if (CheckStyle(StyleTitileToAddTextBox.Text))
+            {
+                OpenConnection();
+                if (int.MinValue == GetStyleTitleId(StyleTitileToAddTextBox.Text.ToLower()))
+                {
+                    NpgsqlCommand cmd = connect.CreateCommand();
+                    cmd.CommandText = $"insert into \"StyleTitle\" (style_name) values ('{StyleTitileToAddTextBox.Text.ToLower()}')";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Жанр успешно добавлен!");
+                }
+                else { MessageBox.Show("Такой жанр уже существует!"); }
+                CloseConnection();
+            }
+            else MessageBox.Show("Введите корректное название жанра!");
         }
     }
 }

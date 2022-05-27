@@ -19,17 +19,17 @@ namespace FormsForBD
             filtertext = filter;
         }
 
-        public void InitializeDgw(List<string> list) 
+        public void InitializeDgw(List<KeyValuePair<int, string>> list) 
         {
             foreach (var i in list)
-                FilterDgw.Rows.Add(i, "Выбрать");
+                FilterDgw.Rows.Add(i.Key, i.Value, "Выбрать");
         }
 
         private void FilterDgw_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var dgw = (DataGridView)sender;
             var list_cells = dgw.Rows[e.RowIndex].Cells;
-            filtertext.Text = list_cells[0].Value.ToString();
+            filtertext.Text = list_cells[1].Value.ToString();
             this.Close();
         }
     }
